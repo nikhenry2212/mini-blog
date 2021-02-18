@@ -23,6 +23,7 @@ class Home extends Component {
           autor: childItem.val().autor,
         })
       });
+      state.posts.reverse();
       this.setState(state);
     })
   }

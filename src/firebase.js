@@ -19,6 +19,7 @@ class Firebase {
     if (!app.apps.length) {
       app.initializeApp(firebaseConfig)
     }
+    //Referenciando a database para acessar em outros locais
     this.app = app.database();
     
   }
