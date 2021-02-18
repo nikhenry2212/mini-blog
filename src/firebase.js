@@ -16,10 +16,11 @@ let firebaseConfig = {
 
 class Firebase {
   constructor() {
-    if(!app.apps.length){
+    if (!app.apps.length) {
       app.initializeApp(firebaseConfig)
-   }
+    }
     this.app = app.database();
+    
   }
   login(email, password) {
     return app.auth().signInWithEmailAndPassword(email, password)
@@ -33,14 +34,27 @@ class Firebase {
       nome: nome
     })
   }
+  logout(){
+    return app.auth().signOut()
+  }
   isInitialized() {
     return new Promise(resolve => {
       app.auth().onAuthStateChanged(resolve)
     })
   }
 
-  getCurrent(){
+  getCurrent() {
     return app.auth().currentUser && app.auth().currentUser.email
+  }
+
+  async getUserName(callback) {
+    if(!app.auth().currentUser){
+      return null;
+    }
+    const uid = app.auth().currentUser.uid;
+    await app.database().ref('usuarios').child(uid)
+    .once('value').then(callback);
+  
   }
 
 }
