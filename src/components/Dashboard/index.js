@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import firebase from '../../firebase';
 import './dashboard.css';
+//teste merge
 
 class Dashboard extends Component {
 
